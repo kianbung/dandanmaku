@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://sprites/spritesheets/enemy-small.png" type="Texture" id=1]
+[ext_resource path="res://src/EnemySmall.gd" type="Script" id=2]
+[ext_resource path="res://src/EnemyBullet.tscn" type="PackedScene" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 20.0266
+
+[node name="EnemySmall" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource( 2 )
+bullet = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2.5, 2.5 )
+frames = SubResource( 3 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="Muzzle" type="Position2D" parent="."]
+position = Vector2( 0, 24 )
+
+[node name="ShotTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -1.90735e-06, 0 )
+scale = Vector2( 3.2, 3.2 )
+[connection signal="timeout" from="ShotTimer" to="." method="_on_ShotTimer_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
