@@ -7,13 +7,14 @@ var hp : int = 1
 var points : int = 10
 
 func take_damage(dmg_source):
-	hp -= 1
-	if hp <= 0:
-		die()
-		
-	$AnimatedSprite.modulate = Color(255,255,255)
-	yield(get_tree().create_timer(0.05), "timeout")
-	$AnimatedSprite.modulate = Color(1,1,1)
+	if dmg_source.is_in_group("player") or dmg_source.is_in_group("player_bullet"):
+		hp -= 1
+		if hp <= 0:
+			die()
+			
+		$AnimatedSprite.modulate = Color(255,255,255)
+		yield(get_tree().create_timer(0.05), "timeout")
+		$AnimatedSprite.modulate = Color(1,1,1)
 
 func die():
 	var explode = load("res://src/Explosion.tscn").instance()

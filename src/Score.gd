@@ -35,7 +35,7 @@ func grazed(collider):
 		$ComboTimer.start()
 	else:
 		$ComboTimer.start($ComboTimer.time_left + 2)
-	print("grazed")
+
 func _ready():
 	$PlayerHP.text = str(hp)
 	get_parent().get_node("Player/GrazeZone").connect("area_entered", self, "grazed")
