@@ -1,18 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://sprites/spritesheets/enemy-small.png" type="Texture" id=1]
-[ext_resource path="res://src/EnemySmall.gd" type="Script" id=2]
-[ext_resource path="res://src/EnemyBullet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/spritesheets/enemy-big.png" type="Texture" id=1]
+[ext_resource path="res://src/EnemyBig.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 16, 16 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 16, 0, 16, 16 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -23,15 +22,14 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 8.0
+radius = 12.9565
 
-[node name="EnemySmall" type="Area2D" groups=[
+[node name="EnemyBig" type="Area2D" groups=[
 "enemy",
 ]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource( 2 )
-bullet = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
@@ -39,17 +37,19 @@ frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.080677, 5.70026 )
 shape = SubResource( 4 )
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -1.90735e-06, 4 )
+scale = Vector2( 3.2, 2.8 )
+
 [node name="Muzzle" type="Position2D" parent="."]
-position = Vector2( 0, 24 )
+position = Vector2( 0, 16 )
 
 [node name="ShotTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( -1.90735e-06, 0 )
-scale = Vector2( 3.2, 3.2 )
-[connection signal="timeout" from="ShotTimer" to="." method="_on_ShotTimer_timeout"]
+[node name="BurstTimer" type="Timer" parent="."]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="ShotTimer" to="." method="_on_ShotTimer_timeout"]
+[connection signal="timeout" from="BurstTimer" to="." method="_on_BurstTimer_timeout"]

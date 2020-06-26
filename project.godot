@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "EnemyShip",
+"language": "GDScript",
+"path": "res://src/EnemyShip.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://git_api.gdns"
 } ]
 _global_script_class_icons={
+"EnemyShip": "",
 "GitAPI": ""
 }
 
@@ -26,12 +32,24 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=720
-window/size/height=1024
+window/size/width=216
+window/size/height=384
+window/size/test_width=576
+window/size/test_height=1024
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [gdnative]
 
 singletons=[ "res://git_api.gdnlib" ]
+
+[input]
+
+slow={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777240,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 

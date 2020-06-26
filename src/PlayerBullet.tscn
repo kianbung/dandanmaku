@@ -24,14 +24,16 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=4]
 radius = 3.90561
 
-[node name="PlayerBullet" type="Area2D"]
-scale = Vector2( 2.5, 2.5 )
+[node name="PlayerBullet" type="Area2D" groups=[
+"player_bullet",
+]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -39,4 +41,5 @@ position = Vector2( -0.628212, -3.32056 )
 shape = SubResource( 4 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="area_entered" from="." to="." method="_on_PlayerBullet_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

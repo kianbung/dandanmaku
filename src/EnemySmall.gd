@@ -1,6 +1,6 @@
-extends Area2D
+extends EnemyShip
 
-var speed : int = 100
+onready var speed = rand_range(45,55)
 var direction = Vector2.DOWN
 export var bullet : PackedScene
 

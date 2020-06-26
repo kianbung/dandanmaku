@@ -6,8 +6,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 2.76346
 
-[node name="EnemyBullet" type="Area2D"]
-scale = Vector2( 2.5, 2.5 )
+[node name="EnemyBullet" type="Area2D" groups=[
+"enemy_bullet",
+]]
 collision_layer = 8
 script = ExtResource( 2 )
 
@@ -18,8 +19,8 @@ hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.489511, 1.39859 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="area_entered" from="." to="." method="_on_EnemyBullet_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
