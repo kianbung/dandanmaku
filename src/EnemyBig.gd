@@ -43,6 +43,7 @@ func single_shot(dir : Vector2, spd : int):
 	get_parent().add_child(shot)
 
 func _ready():
+	ship_name = "EnemyBig"
 	hp = 10
 	points = 50
 	screen_size = get_viewport_rect().size

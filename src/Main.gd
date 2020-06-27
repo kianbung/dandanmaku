@@ -6,10 +6,9 @@ func start_game():
 	$Player.global_position = Vector2(screen_size.x / 2, screen_size.y * 0.9)
 	$Player.visible = true
 	$Player/CollisionShape2D.disabled = false
-	$HUD.score = 0
-	$HUD.hp = 3
+	$HUD.reset_all()
 	$EnemySpawner/EnemySpawnTimer.start()
-	
+	$GUI/ScoreReport.visible = false
 	$GUI/Title.visible = false
 	$GUI/StartButton.visible = false
 
@@ -19,7 +18,8 @@ func game_over():
 	get_tree().call_group("enemy_bullet", "queue_free")
 	get_tree().call_group("player_bullet", "queue_free")
 	get_tree().call_group("item", "queue_free")
-	$GUI/Title.visible = true
+	$GUI/ScoreReport.text = "Best Combo: " + str($HUD.best_combo) + "\nKillstreak: " + str($HUD.killstreak) + "x"
+	$GUI/ScoreReport.visible = true
 	$GUI/StartButton.visible = true
 
 func _on_StartButton_pressed():

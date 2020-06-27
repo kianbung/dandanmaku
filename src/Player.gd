@@ -22,6 +22,15 @@ func get_input():
 		speed = slow_speed
 	else:
 		speed = default_speed
+	if Input.is_action_just_pressed("bomb"):
+		use_bomb()
+
+func use_bomb():
+	if get_node("/root/Main/HUD").use_bomb():
+		get_tree().call_group("enemy", "explode")
+		get_tree().call_group("enemy_bullet", "queue_free")
+		get_node("/root/Main/Camera/AnimationPlayer").play("screen_flash")
+		#get_node("/root/Main/Camera/AnimationPlayer").play("screen_shake")
 
 func shoot():
 	if $ShotCooldown.is_stopped():

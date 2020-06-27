@@ -37,6 +37,7 @@ func shoot():
 	get_parent().add_child(shot)
 
 func _ready():
+	ship_name = "EnemyMedium"
 	hp = 5
 	points = 25
 	screen_size = get_viewport_rect().size

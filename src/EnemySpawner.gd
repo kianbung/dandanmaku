@@ -25,4 +25,3 @@ func _on_EnemySpawnTimer_timeout():
 func enemy_death(_pts):
 	if get_tree().get_nodes_in_group("enemy").size() <= 1:
 		$EnemySpawnTimer.start(rand_range(1,2))
-		print("spawn reset")
