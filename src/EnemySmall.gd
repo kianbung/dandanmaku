@@ -9,7 +9,6 @@ func shoot():
 	get_parent().add_child(shot)
 	shot.global_position = $Muzzle.global_position
 	$ShotTimer.wait_time = rand_range(0.3, 5)
-	print("Shot timer: " + str($ShotTimer.wait_time))
 
 func _ready():
 	ship_name = "EnemySmall"
