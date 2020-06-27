@@ -18,23 +18,27 @@ func combo_reset():
 	$ComboTimer.stop()
 	$ComboTimer.wait_time = 5
 
-func update_score(pts):
-	score += pts
-	$Score.text = str(score)
-
-func enemy_death(pts):
+func combo_continue(pts : int):
 	combo_points += pts
 	if $ComboTimer.is_stopped():
 		$ComboTimer.start()
 	else:
 		$ComboTimer.start($ComboTimer.time_left + 2)
 
+func update_score(pts):
+	score += pts
+	$Score.text = str(score)
+
+func enemy_death(pts):
+	combo_continue(pts)
+	
+
 func grazed(collider):
-	combo_points += 10
-	if $ComboTimer.is_stopped():
-		$ComboTimer.start()
-	else:
-		$ComboTimer.start($ComboTimer.time_left + 2)
+	combo_continue(10)
+
+func item_pickup(name):
+	if name == "SmallGem":
+		combo_continue(5)
 
 func _ready():
 	$PlayerHP.text = str(hp)

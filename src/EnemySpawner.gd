@@ -9,14 +9,20 @@ func spawn_enemy():
 	var enemy = enemy_list[enemy_selected].instance()
 	enemy.global_position = Vector2(rand_range(0, get_viewport_rect().size.x ), 0)
 	enemy.connect("death", get_parent().get_node("HUD"), "enemy_death")
+	enemy.connect("death", self, "enemy_death")
 	add_child(enemy)
 	match enemy_selected:
 		0:
-			$EnemySpawnTimer.wait_time = rand_range(1, 3)
+			$EnemySpawnTimer.start(rand_range(1, 3))
 		1:
-			$EnemySpawnTimer.wait_time = rand_range(3, 6)
+			$EnemySpawnTimer.start(rand_range(3, 5))
 		2:
-			$EnemySpawnTimer.wait_time = rand_range(6, 10)
+			$EnemySpawnTimer.start(rand_range(4, 6))
 
 func _on_EnemySpawnTimer_timeout():
 	spawn_enemy()
+
+func enemy_death(_pts):
+	if get_tree().get_nodes_in_group("enemy").size() <= 1:
+		$EnemySpawnTimer.start(rand_range(1,2))
+		print("spawn reset")

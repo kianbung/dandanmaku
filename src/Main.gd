@@ -18,6 +18,7 @@ func game_over():
 	get_tree().call_group("enemy", "queue_free")
 	get_tree().call_group("enemy_bullet", "queue_free")
 	get_tree().call_group("player_bullet", "queue_free")
+	get_tree().call_group("item", "queue_free")
 	$GUI/Title.visible = true
 	$GUI/StartButton.visible = true
 

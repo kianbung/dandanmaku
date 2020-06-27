@@ -4,7 +4,7 @@ signal player_death
 
 var screen_size : Vector2
 export var default_speed = 200
-export var slow_speed = 100
+export var slow_speed = 80
 onready var speed = default_speed
 var direction : Vector2
 export var bullet : PackedScene
@@ -42,6 +42,10 @@ func die():
 	get_parent().add_child(explode)
 	emit_signal("player_death")
 
+func take_damage():
+	$AnimationPlayer.play("damaged")
+	get_parent().get_node("HUD").take_damage()
+	
 func _ready():
 	screen_size = get_viewport_rect().size
 
@@ -52,4 +56,5 @@ func _process(delta):
 
 
 func _on_Player_area_entered(area):
-	get_parent().get_node("HUD").take_damage()
+	if area.is_in_group("enemy") or area.is_in_group("enemy_bullet"):
+		take_damage()

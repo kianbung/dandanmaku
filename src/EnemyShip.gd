@@ -3,7 +3,7 @@ extends Node2D
 class_name EnemyShip
 
 signal death(points)
-var hp : int = 1
+var hp : int = 2
 var points : int = 10
 
 func take_damage(dmg_source):
@@ -21,7 +21,13 @@ func die():
 	explode.global_position = global_position
 	get_parent().add_child(explode)
 	emit_signal("death", points)
+	spawn_item()
 	queue_free()
+
+func spawn_item():
+	var item = load("res://src/SmallGem.tscn").instance()
+	item.global_position = global_position
+	get_parent().add_child(item)
 
 func _ready():
 	connect("area_entered", self, "take_damage")

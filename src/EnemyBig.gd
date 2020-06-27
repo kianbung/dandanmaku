@@ -18,15 +18,15 @@ func set_burst(density : int, size : int):
 	burst_size = size
 
 func shoot():
-	set_burst(rand_range(8, 16), rand_range(20, 40))
+	set_burst(rand_range(10, 20), rand_range(20, 80))
 	burst()
-	$ShotTimer.wait_time = rand_range(3,8)
+	$ShotTimer.wait_time = rand_range(2,5)
 	$ShotTimer.stop()
 
 func burst():
 	var new_rotation : float = float(burst_count) / float(burst_density) * PI * 2
 	var current_direction = Vector2.DOWN.rotated(new_rotation)
-	single_shot(current_direction, 50)
+	single_shot(current_direction, 30)
 	if burst_count < burst_size:
 		burst_count += 1
 		$BurstTimer.wait_time = 0.05
@@ -43,7 +43,7 @@ func single_shot(dir : Vector2, spd : int):
 	get_parent().add_child(shot)
 
 func _ready():
-	hp = 5
+	hp = 10
 	points = 50
 	screen_size = get_viewport_rect().size
 	jump_distance = rand_range(screen_size.y * 0.05, screen_size.y * 0.25)

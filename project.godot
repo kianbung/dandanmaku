@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://git_api.gdns"
+}, {
+"base": "Area2D",
+"class": "Item",
+"language": "GDScript",
+"path": "res://src/Item.gd"
 } ]
 _global_script_class_icons={
 "EnemyShip": "",
-"GitAPI": ""
+"GitAPI": "",
+"Item": ""
 }
 
 [application]

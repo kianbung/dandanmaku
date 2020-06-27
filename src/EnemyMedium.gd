@@ -33,11 +33,11 @@ func shoot():
 	var aim = get_node("/root/Main/Player").global_position - $Muzzle.global_position
 	shot.global_position = $Muzzle.global_position
 	shot.change_direction(aim.rotated(rand_range(-PI / 8, PI / 8)))
-	shot.change_speed(60)
+	shot.change_speed(50)
 	get_parent().add_child(shot)
 
 func _ready():
-	hp = 3
+	hp = 5
 	points = 25
 	screen_size = get_viewport_rect().size
 	target_distance = rand_range(screen_size.y * 0.01, screen_size.y * 0.15)
@@ -65,7 +65,7 @@ func _on_ShotTimer_timeout():
 	burst_size = int(rand_range(3, 10))
 	$BurstTimer.wait_time = 0.01
 	$BurstTimer.start()
-	$ShotTimer.wait_time = rand_range(0.3, 5)
+	$ShotTimer.wait_time = rand_range(0.3, 3)
 
 
 func _on_VisibilityNotifier2D_screen_exited():
