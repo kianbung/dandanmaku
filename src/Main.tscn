@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://sprites/spritesheets/bomb.png" type="Texture" id=6]
 [ext_resource path="res://sprites/spritesheets/lives-icon.png" type="Texture" id=7]
 [ext_resource path="res://sprites/spritesheets/white_dot.png" type="Texture" id=8]
+[ext_resource path="res://sprites/backgrounds/desert-backgorund.png" type="Texture" id=9]
+[ext_resource path="res://src/Background.gd" type="Script" id=10]
 
 [sub_resource type="InputEventAction" id=1]
 action = "ui_select"
@@ -210,6 +212,19 @@ texture = ExtResource( 8 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 220, 388 )
+
+[node name="Background" type="ParallaxBackground" parent="."]
+script = ExtResource( 10 )
+
+[node name="Ground" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2( 0, 544 )
+
+[node name="Sprite" type="Sprite" parent="Background/Ground"]
+texture = ExtResource( 9 )
+centered = false
+offset = Vector2( -20, -3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 256, 544 )
 [connection signal="player_death" from="Player" to="." method="_on_Player_player_death"]
 [connection signal="timeout" from="EnemySpawner/EnemySpawnTimer" to="EnemySpawner" method="_on_EnemySpawnTimer_timeout"]
 [connection signal="timeout" from="HUD/ComboTimer" to="HUD" method="_on_ComboTimer_timeout"]
