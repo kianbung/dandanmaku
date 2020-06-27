@@ -12,6 +12,7 @@ func start_game():
 	$GUI/ScoreReport.visible = false
 	$GUI/Title.visible = false
 	$GUI/StartButton.visible = false
+	$GUI/Controls.visible = false
 
 func game_over():
 	$EnemySpawner/EnemySpawnTimer.stop()

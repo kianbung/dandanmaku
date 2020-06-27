@@ -197,6 +197,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Controls" type="Label" parent="GUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -47.0
+margin_top = 40.0
+margin_right = 47.0
+margin_bottom = 88.0
+text = "Z/Space: Shoot
+X/Alt: Slow
+C/Ctrl: Bomb"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true

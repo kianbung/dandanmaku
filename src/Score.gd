@@ -29,6 +29,7 @@ func reset_all():
 	#TODO: add methods later
 	$PlayerHP.text = str(hp)
 	$BombCounter.text = str(bomb)
+	update_score(0)
 
 func take_damage():
 	hp -= 1

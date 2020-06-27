@@ -57,8 +57,9 @@ func die():
 	control_lock = true
 
 func take_damage():
-	$AnimationPlayer.play("damaged")
-	get_parent().get_node("HUD").take_damage()
+	if !$AnimationPlayer.is_playing():
+		$AnimationPlayer.play("damaged")
+		get_parent().get_node("HUD").take_damage()
 	
 func _ready():
 	screen_size = get_viewport_rect().size
