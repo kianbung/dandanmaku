@@ -10,6 +10,7 @@ func _ready():
 	$VisibilityNotifier2D.connect("screen_exited", self, "screen_exited")
 	connect("item_pickup", get_node("/root/Main/HUD"), "item_pickup")
 	self.scale *= 0.5
+	add_to_group("item")
 
 func _process(delta):
 	position += Vector2.DOWN * speed * delta

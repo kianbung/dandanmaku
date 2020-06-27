@@ -51,4 +51,5 @@ func roll_item():
 
 func _ready():
 	connect("area_entered", self, "take_damage")
+	add_to_group("enemy")
 

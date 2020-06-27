@@ -5,6 +5,7 @@ func start_game():
 	var screen_size = get_viewport_rect().size
 	$Player.global_position = Vector2(screen_size.x / 2, screen_size.y * 0.9)
 	$Player.visible = true
+	$Player.control_lock = false
 	$Player/CollisionShape2D.disabled = false
 	$HUD.reset_all()
 	$EnemySpawner/EnemySpawnTimer.start()

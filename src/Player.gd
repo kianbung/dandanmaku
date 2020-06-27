@@ -9,7 +9,11 @@ onready var speed = default_speed
 var direction : Vector2
 export var bullet : PackedScene
 
+var control_lock : bool = true
+
 func get_input():
+	if control_lock:
+		return
 	direction = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -50,6 +54,7 @@ func die():
 	explode.global_position = global_position
 	get_parent().add_child(explode)
 	emit_signal("player_death")
+	control_lock = true
 
 func take_damage():
 	$AnimationPlayer.play("damaged")

@@ -24,16 +24,13 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 15.5684, 6.22496 )
 
-[node name="EnemyMedium" type="Area2D" groups=[
-"enemy",
-]]
+[node name="EnemyMedium" type="Area2D"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -33,9 +33,7 @@ animations = [ {
 
 [sub_resource type="CircleShape2D" id=6]
 
-[node name="SmallGem" type="Area2D" groups=[
-"item",
-]]
+[node name="SmallGem" type="Area2D"]
 collision_layer = 16
 script = ExtResource( 2 )
 
