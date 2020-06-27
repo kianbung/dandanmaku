@@ -33,13 +33,14 @@ bullet = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )
 
 [node name="Muzzle" type="Position2D" parent="."]
-position = Vector2( 0, 24 )
+position = Vector2( 0, 8 )
 
 [node name="ShotTimer" type="Timer" parent="."]
 wait_time = 2.0

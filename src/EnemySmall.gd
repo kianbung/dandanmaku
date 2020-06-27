@@ -6,6 +6,7 @@ export var bullet : PackedScene
 
 func shoot():
 	var shot = bullet.instance()
+	shot.change_speed(80)
 	get_parent().add_child(shot)
 	shot.global_position = $Muzzle.global_position
 	$ShotTimer.wait_time = rand_range(0.3, 5)
