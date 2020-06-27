@@ -33,8 +33,8 @@ func explode():
 	get_parent().add_child(explode)
 	queue_free()
 
-func spawn_item():
-	var item = roll_item().instance()
+func spawn_item(is_bombed : bool = false):
+	var item = roll_item().instance() if !is_bombed else load("res://src/SmallGem.tscn").instance()
 	item.global_position = global_position
 	get_parent().add_child(item)
 

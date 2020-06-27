@@ -12,6 +12,11 @@ func change_speed(spd : int):
 func _process(delta):
 	position += direction * speed * delta
 
+func explode():
+	var item = load("res://src/SmallGem.tscn").instance()
+	item.global_position = global_position
+	get_parent().add_child(item)
+	queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

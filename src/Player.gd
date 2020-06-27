@@ -32,7 +32,7 @@ func get_input():
 func use_bomb():
 	if get_node("/root/Main/HUD").use_bomb():
 		get_tree().call_group("enemy", "explode")
-		get_tree().call_group("enemy_bullet", "queue_free")
+		get_tree().call_group("enemy_bullet", "explode")
 		get_node("/root/Main/Camera/AnimationPlayer").play("screen_flash")
 		#get_node("/root/Main/Camera/AnimationPlayer").play("screen_shake")
 

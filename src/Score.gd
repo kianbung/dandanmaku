@@ -51,6 +51,8 @@ func combo_reset():
 	$ComboTimer.wait_time = 5
 	update_combo()
 
+# TODO: TWEAK TIMER & COMBO UPDATE CRITERIA
+
 func combo_continue(pts : int):
 	combo_points += pts
 	if $ComboTimer.is_stopped():
