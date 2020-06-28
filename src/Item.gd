@@ -12,7 +12,7 @@ func _ready():
 	connect("item_pickup", get_node("/root/Main/HUD"), "item_pickup")
 	self.scale *= 0.5
 	add_to_group("item")
-	set_despawn(1)
+	set_despawn(5)
 
 func set_despawn(time):
 	var despawn_timer = Timer.new()
@@ -20,17 +20,8 @@ func set_despawn(time):
 	despawn_timer.connect("timeout", self, "start_despawn")
 	despawn_timer.start(time)
 
-# !TODO: NEEDS BETTER WAY TO BLINK, seems like it's being janked up by not syncing with frame draw
 func start_despawn():
-	var times_to_blink = 5
-	for i in range(0, times_to_blink):
-		self.visible = false
-		print("blink on")
-		yield(get_tree().create_timer(0.1), "timeout")
-		self.visible = true
-		print("blink off")
-	print("free")
-	queue_free()
+	$AnimationPlayer.play("despawn")
 
 func _process(delta):
 	position += direction * speed * delta
