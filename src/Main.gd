@@ -1,8 +1,9 @@
 extends Node2D
 
+var screen_size
+
 func start_game():
 	randomize()
-	var screen_size = get_viewport_rect().size
 	$Player.global_position = Vector2(screen_size.x / 2, screen_size.y * 0.9)
 	$Player.visible = true
 	$Player.control_lock = false
@@ -23,6 +24,10 @@ func game_over():
 	$GUI/ScoreReport.text = "Best Combo: " + str($HUD.best_combo) + "\nKillstreak: " + str($HUD.killstreak) + "x"
 	$GUI/ScoreReport.visible = true
 	$GUI/StartButton.visible = true
+
+func _ready():
+	screen_size = get_viewport_rect().size
+	$Player.global_position = Vector2(screen_size.x / 2, screen_size.y * 0.9)
 
 func _on_StartButton_pressed():
 	start_game()

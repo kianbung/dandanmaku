@@ -4,6 +4,7 @@ var enemy_list = [
 	load("res://src/EnemyMedium.tscn"),
 	load("res://src/EnemyBig.tscn")
 ]
+
 func spawn_enemy():
 	var enemy_selected : int = rand_range(0,2.9)
 	var enemy = enemy_list[enemy_selected].instance()

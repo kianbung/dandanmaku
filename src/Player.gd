@@ -34,7 +34,6 @@ func use_bomb():
 		get_tree().call_group("enemy", "explode")
 		get_tree().call_group("enemy_bullet", "explode")
 		get_node("/root/Main/Camera/AnimationPlayer").play("screen_flash")
-		#get_node("/root/Main/Camera/AnimationPlayer").play("screen_shake")
 
 func shoot():
 	if $ShotCooldown.is_stopped():
@@ -48,13 +47,15 @@ func clamp_player():
 	position.y = clamp(position.y, 0, screen_size.y)
 
 func die():
+	control_lock = true
 	visible = false
 	$CollisionShape2D.disabled = true
-	var explode = load("res://src/Explosion.tscn").instance()
+	var explode = load("res://src/PlayerExplosion.tscn").instance()
 	explode.global_position = global_position
 	get_parent().add_child(explode)
+	explode.get_node("AnimationPlayer").play("explosion")
+	yield(explode.get_node("AnimationPlayer"), "animation_finished")
 	emit_signal("player_death")
-	control_lock = true
 
 func take_damage():
 	if !$AnimationPlayer.is_playing():
