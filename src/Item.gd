@@ -23,11 +23,22 @@ func set_despawn(time):
 func start_despawn():
 	$AnimationPlayer.play("despawn")
 
+func _play_sound():
+	var sound = AudioStreamPlayer.new()
+	sound.stream = load("res://sounds/gem_pickup.ogg")
+	sound.volume_db = -10
+	add_child(sound)
+	sound.play()
+	return sound
+
 func _process(delta):
 	position += direction * speed * delta
 
 func item_pickup(_area):
+	visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
 	emit_signal("item_pickup", item_name)
+	yield(_play_sound(), "finished")
 	queue_free()
 
 func screen_exited():

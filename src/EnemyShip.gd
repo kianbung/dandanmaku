@@ -12,20 +12,29 @@ var item_list = {
 	"Bomb" : load("res://src/Bomb.tscn")
 }
 
+#TODO: Actually add some sounds lol
+func _play_sound():
+	var sound = AudioStreamPlayer.new()
+	sound.stream = load("res://sounds/enemy_shot.ogg")
+	sound.volume_db = -10
+	add_child(sound)
+	sound.play()
+
 func take_damage(dmg_source):
 	if dmg_source.is_in_group("player") or dmg_source.is_in_group("player_bullet"):
 		hp -= 1
 		if hp <= 0:
 			die()
+			return
 			
 		$AnimatedSprite.modulate = Color(255,255,255)
 		yield(get_tree().create_timer(0.05), "timeout")
 		$AnimatedSprite.modulate = Color(1,1,1)
 
 func die():
-	explode()
-	emit_signal("death", points)
 	spawn_item()
+	emit_signal("death", points)
+	explode()
 
 func explode():
 	var explode = load("res://src/Explosion.tscn").instance()

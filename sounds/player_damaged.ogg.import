@@ -11,5 +11,5 @@ dest_files=[ "res://.import/player_damaged.ogg-9887e0fb66b45854fcd21fffb0eca70b.
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

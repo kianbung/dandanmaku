@@ -49,6 +49,13 @@ window/stretch/aspect="keep"
 
 singletons=[ "res://git_api.gdnlib" ]
 
+[importer_defaults]
+
+ogg_vorbis={
+"loop": false,
+"loop_offset": 0
+}
+
 [input]
 
 ui_select={
